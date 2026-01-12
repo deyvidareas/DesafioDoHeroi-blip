@@ -1,16 +1,125 @@
-<html>
-  <Doctype html>
-  <head>
-    <title>Bootcamp Blip</title>
-    <link rel="stylesheet" href="styles.css"/>
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Desafio do Heroi - Bootcamp Blip</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
-  </head>
-  <body>
+<body>
+  <!-- BACKGROUND / GAME STAGE -->
+  <div class="game-bg"></div>
+  <div class="vignette"></div>
 
-      <h1>Bem-vindo ao Bootcamp Blip</h1>
-      <p>Este é um projeto de exemplo para o Bootcamp Blip</p>
-      <p>O Resultado aparecerá em um Alerta na Tela!</p>
-      <script src="script.js"></script>
-  </body>
+  <main class="game">
+    <header class="hud">
+      <div class="hud-left">
+        <h1>Desafio do Heroi</h1>
+        <p class="muted">Crie seu herói e ataque na arena.</p>
+      </div>
 
+      <div class="hud-right">
+        <button class="btn" id="openCreate">🎭 Criar / Editar Herói</button>
+      </div>
+    </header>
+
+    <section class="stage">
+      <div class="arena-card">
+        <div class="character-area">
+          <div class="character" id="character">
+            <div class="char-face" id="charFace">?</div>
+            <div class="char-body" id="charBody"></div>
+            <div class="char-shadow"></div>
+          </div>
+
+          <div class="char-label">
+            <strong id="heroLabel">Sem herói</strong>
+            <span class="pill" id="heroTypeLabel">—</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-row">
+            <div class="stat">
+              <span class="muted">Nome</span>
+              <strong id="heroName">—</strong>
+            </div>
+            <div class="stat">
+              <span class="muted">Idade</span>
+              <strong id="heroAge">—</strong>
+            </div>
+            <div class="stat">
+              <span class="muted">Tipo</span>
+              <strong id="heroType">—</strong>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn primary" id="attackBtn" disabled>⚔️ Atacar</button>
+            <button class="btn" id="specialBtn" disabled>✨ Especial</button>
+            <button class="btn danger" id="resetBtn" disabled>↺ Reset</button>
+          </div>
+
+          <div class="screen" id="screen">
+            <p class="muted">Abra o modal e crie seu herói para começar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL: CREATE HERO -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true"></div>
+
+  <section class="modal" id="createModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="modalTitle">Criar herói</h2>
+        <button class="icon-btn" id="closeModal" aria-label="Fechar">✕</button>
+      </div>
+
+      <form id="heroForm" class="form">
+        <label>
+          Nome do herói
+          <input id="nome" type="text" placeholder="Ex: Arthus" maxlength="18" required />
+        </label>
+
+        <label>
+          Idade
+          <input id="idade" type="number" placeholder="Ex: 27" min="1" max="120" required />
+        </label>
+
+        <label>
+          Tipo do herói
+          <select id="tipo" required>
+            <option value="" selected disabled>Selecione</option>
+            <option value="guerreiro">Guerreiro</option>
+            <option value="mago">Mago</option>
+            <option value="monge">Monge</option>
+            <option value="ninja">Ninja</option>
+          </select>
+        </label>
+
+        <div class="preview">
+          <div class="preview-title muted">Prévia do boneco</div>
+          <div class="preview-char" id="previewChar">
+            <div class="preview-face" id="previewFace">?</div>
+            <div class="preview-body" id="previewBody"></div>
+          </div>
+          <div class="preview-type" id="previewType">—</div>
+        </div>
+
+        <p class="msg" id="formMsg" aria-live="polite"></p>
+
+        <div class="row">
+          <button class="btn primary" type="submit">Salvar herói</button>
+          <button class="btn" type="button" id="cancelBtn">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
 </html>
